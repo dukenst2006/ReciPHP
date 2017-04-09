@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
 
-const routes = [
+const homeRoutes = [
     {
         path: "/home",
         component: require("./components/Pages/HomePage.vue"),
@@ -8,13 +8,26 @@ const routes = [
             title: "Home - ReciPHP",
         },
     },
+];
+
+const recipeRoutes = [
     {
         path: "/recipes",
-        component: require("./components/Pages/RecipesPage.vue"),
+        component: require("./components/Pages/Recipe/RecipesPage.vue"),
         meta: {
             title: "Rezepte - ReciPHP",
         },
     },
+    {
+        path: "/recipes/new",
+        component: require("./components/Pages/Recipe/NewRecipePage.vue"),
+        meta: {
+            title: "Neues Rezept - ReciPHP",
+        },
+    }
+];
+
+const userRoutes = [
     {
         path: "/users",
         component: require("./components/Pages/UsersPage.vue"),
@@ -22,6 +35,12 @@ const routes = [
             title: "Users - ReciPHP",
         },
     },
+];
+
+const routes = [
+    ...homeRoutes,
+    ...recipeRoutes,
+    ...userRoutes,
 ];
 
 const router = new VueRouter({

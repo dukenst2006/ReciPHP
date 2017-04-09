@@ -5635,21 +5635,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 38 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-/***/ }),
+/* 38 */,
 /* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5731,25 +5717,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(12);
 
 
-var routes = [{
+var homeRoutes = [{
     path: "/home",
     component: __webpack_require__(56),
     meta: {
         title: "Home - ReciPHP"
     }
-}, {
+}];
+
+var recipeRoutes = [{
     path: "/recipes",
-    component: __webpack_require__(57),
+    component: __webpack_require__(85),
     meta: {
         title: "Rezepte - ReciPHP"
     }
 }, {
+    path: "/recipes/new",
+    component: __webpack_require__(88),
+    meta: {
+        title: "Neues Rezept - ReciPHP"
+    }
+}];
+
+var userRoutes = [{
     path: "/users",
     component: __webpack_require__(58),
     meta: {
         title: "Users - ReciPHP"
     }
 }];
+
+var routes = [].concat(homeRoutes, recipeRoutes, userRoutes);
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
     routes: routes,
@@ -5891,13 +5889,7 @@ exports = module.exports = __webpack_require__(1)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-/***/ }),
+/* 48 */,
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33416,44 +33408,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(72)
-
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(38),
-  /* template */
-  __webpack_require__(64),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "C:\\Users\\timon\\PhpstormProjects\\ReciPHP\\resources\\assets\\js\\components\\Pages\\RecipesPage.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RecipesPage.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-657f5a92", Component.options)
-  } else {
-    hotAPI.reload("data-v-657f5a92", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 57 */,
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33687,25 +33642,7 @@ if (false) {
 }
 
 /***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "inner"
-  }, [_c('h1', [_vm._v("Rezepte")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-657f5a92", module.exports)
-  }
-}
-
-/***/ }),
+/* 64 */,
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33898,32 +33835,7 @@ if(false) {
 }
 
 /***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(48);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("b480e016", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-657f5a92!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RecipesPage.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-657f5a92!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RecipesPage.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 72 */,
 /* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51030,6 +50942,622 @@ module.exports = function(module) {
 __webpack_require__(15);
 module.exports = __webpack_require__(16);
 
+
+/***/ }),
+/* 81 */,
+/* 82 */,
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {
+        newRecipe: function newRecipe() {
+            this.$router.push("/recipes/new");
+        }
+    }
+});
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(87)
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(83),
+  /* template */
+  __webpack_require__(86),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\timon\\PhpstormProjects\\ReciPHP\\resources\\assets\\js\\components\\Pages\\Recipe\\RecipesPage.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RecipesPage.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d093c236", Component.options)
+  } else {
+    hotAPI.reload("data-v-d093c236", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "inner"
+  }, [_c('v-btn', {
+    attrs: {
+      "floating": "floating",
+      "id": "new-recipe",
+      "primary": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.newRecipe($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("add")])], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d093c236", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(84);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("03c398df", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-d093c236!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RecipesPage.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-d093c236!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RecipesPage.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(92)
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(89),
+  /* template */
+  __webpack_require__(91),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\timon\\PhpstormProjects\\ReciPHP\\resources\\assets\\js\\components\\Pages\\Recipe\\NewRecipePage.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] NewRecipePage.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-28327b64", Component.options)
+  } else {
+    hotAPI.reload("data-v-28327b64", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Recipe_Recipe__ = __webpack_require__(95);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            stepper: 0,
+            recipe: new __WEBPACK_IMPORTED_MODULE_0__Recipe_Recipe__["a" /* Recipe */]()
+        };
+    },
+
+    components: {
+        "ingredient-list": __webpack_require__(99)
+    },
+    methods: {
+        addNewIngredientList: function addNewIngredientList() {
+            this.recipe.ingredientLists.push(new __WEBPACK_IMPORTED_MODULE_0__Recipe_Recipe__["b" /* IngredientList */]("", []));
+        }
+    }
+});
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "inner"
+  }, [_c('v-card', {
+    staticClass: "primary white--text"
+  }, [_c('v-card-title', [_vm._v("Neues Rezept")])], 1), _vm._v(" "), _c('v-card', [_c('v-stepper', {
+    model: {
+      value: (_vm.stepper),
+      callback: function($$v) {
+        _vm.stepper = $$v
+      },
+      expression: "stepper"
+    }
+  }, [_c('v-stepper-header', [_c('v-stepper-step', {
+    attrs: {
+      "step": "1",
+      "complete": _vm.stepper > 1
+    }
+  }, [_vm._v("Zutaten")]), _vm._v(" "), _c('v-divider'), _vm._v(" "), _c('v-stepper-step', {
+    attrs: {
+      "step": "2",
+      "complete": _vm.stepper > 2
+    }
+  }, [_vm._v("Kochschritte")]), _vm._v(" "), _c('v-divider'), _vm._v(" "), _c('v-stepper-step', {
+    attrs: {
+      "step": "3"
+    }
+  }, [_vm._v("Bestätigen")])], 1), _vm._v(" "), _c('v-stepper-content', {
+    attrs: {
+      "step": "1"
+    }
+  }, [_vm._l((_vm.recipe.ingredientLists), function(list, index) {
+    return _c('ingredient-list', {
+      attrs: {
+        "list": list
+      }
+    })
+  }), _vm._v(" "), _c('v-row', [_c('v-col', {
+    attrs: {
+      "xs6": ""
+    }
+  }, [_c('v-btn', {
+    staticClass: "stepper-button",
+    attrs: {
+      "primary": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.stepper = 2
+      }
+    }
+  }, [_vm._v("Weiter")])], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "text-xs-right",
+    attrs: {
+      "xs6": ""
+    }
+  }, [_c('v-btn', {
+    attrs: {
+      "floating": "floating",
+      "secondary": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.addNewIngredientList($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("add")])], 1)], 1)], 1)], 2), _vm._v(" "), _c('v-stepper-content', {
+    attrs: {
+      "step": "2"
+    }
+  }, [_c('v-btn', {
+    attrs: {
+      "primary": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.stepper = 3
+      }
+    }
+  }, [_vm._v("Weiter")]), _vm._v(" "), _c('v-btn', {
+    staticClass: "stepper-button",
+    attrs: {
+      "flat": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.stepper = 1
+      }
+    }
+  }, [_vm._v("Zurück")])], 1), _vm._v(" "), _c('v-stepper-content', {
+    attrs: {
+      "step": "3"
+    }
+  }, [_c('v-btn', {
+    attrs: {
+      "primary": ""
+    }
+  }, [_vm._v("Speichern")]), _vm._v(" "), _c('v-btn', {
+    staticClass: "stepper-button",
+    attrs: {
+      "flat": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.stepper = 2
+      }
+    }
+  }, [_vm._v("Zurück")])], 1)], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-28327b64", module.exports)
+  }
+}
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(90);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("1a2056e0", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-28327b64!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewRecipePage.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-28327b64!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewRecipePage.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Ingredient = function Ingredient(name, amount) {
+    _classCallCheck(this, Ingredient);
+
+    this.name = name;
+    this.amount = amount;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Ingredient);
+;
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var IngredientList = function IngredientList(name) {
+    var ingredients = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+    _classCallCheck(this, IngredientList);
+
+    this.name = name;
+    this.ingredients = ingredients;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (IngredientList);
+;
+
+/***/ }),
+/* 95 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Ingredient__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__IngredientList__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Step__ = __webpack_require__(96);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__Ingredient__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__IngredientList__["a"]; });
+/* unused harmony reexport Step */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Recipe; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+
+var Recipe = function Recipe() {
+    var ingredientLists = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [new __WEBPACK_IMPORTED_MODULE_1__IngredientList__["a" /* default */]("", [])];
+    var steps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [new __WEBPACK_IMPORTED_MODULE_2__Step__["a" /* default */]("", "")];
+
+    _classCallCheck(this, Recipe);
+
+    this.ingredientLists = ingredientLists;
+    this.steps = steps;
+};
+
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Step = function Step(title, body) {
+    _classCallCheck(this, Step);
+
+    this.title = title;
+    this.body = body;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Step);
+;
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Recipe_Recipe__ = __webpack_require__(95);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["list"],
+    methods: {
+        updateIngredients: function updateIngredients(event) {
+            var value = event.srcElement.value;
+            var lines = value.split("\n");
+            var ingredients = [];
+            lines.forEach(function (line) {
+                var parts = line.split(":");
+                if (parts.length === 2) {
+                    ingredients.push(new __WEBPACK_IMPORTED_MODULE_0__Recipe_Recipe__["c" /* Ingredient */](parts[0].trim(), parts[1].trim()));
+                }
+            });
+            this.list.ingredients = ingredients;
+        }
+    }
+});
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(101)
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(97),
+  /* template */
+  __webpack_require__(100),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\timon\\PhpstormProjects\\ReciPHP\\resources\\assets\\js\\components\\Recipe\\IngredientList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] IngredientList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-331e6f0e", Component.options)
+  } else {
+    hotAPI.reload("data-v-331e6f0e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('v-card', {
+    staticClass: "elevation-10 stepper-step"
+  }, [_c('v-card-text', [_c('v-text-field', {
+    attrs: {
+      "name": "title",
+      "label": "Name"
+    },
+    model: {
+      value: (_vm.list.name),
+      callback: function($$v) {
+        _vm.list.name = $$v
+      },
+      expression: "list.name"
+    }
+  }), _vm._v(" "), _c('v-text-field', {
+    attrs: {
+      "name": "ingredients",
+      "label": "Zutaten (eine Zeile pro Zutat. Name und Menge durch ':' trennen)",
+      "multi-line": ""
+    },
+    nativeOn: {
+      "input": function($event) {
+        _vm.updateIngredients($event)
+      }
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-331e6f0e", module.exports)
+  }
+}
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(98);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("5e2e8296", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-331e6f0e!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IngredientList.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-331e6f0e!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IngredientList.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

@@ -13,6 +13,7 @@
 
 Route::post("/api/login", "Auth\\LoginController@login");
 Route::post("/api/logout", "Auth\\LoginController@logout");
+Route::resource("/api/recipe", "RecipeController");
 
 Route::get("/api/user.json", function() {
     $data = [];
@@ -41,4 +42,4 @@ Route::get("/", function() {
 
 Route::get('/{url}', function () {
     return view("main");
-})->where("url", '^(?!/api)\w+$');
+})->where("url", '.*');

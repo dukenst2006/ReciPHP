@@ -2,6 +2,10 @@
 
 @import "../../../node_modules/vuetify/src/stylus/main"
 
+html {
+  overflow-y: hidden;
+}
+
 #app {
   #footer {
     position: absolute;
@@ -30,15 +34,35 @@
   main {
     position: relative;
     height: calc(100vh - 64px - 56px);
+    overflow-y: scroll;
+  }
+
+  #new-recipe {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .stepper-step {
+    width: calc(100% - 26px);
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
+  .stepper-button {
+    margin-top: 20px;
   }
 }
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s
 }
-  .fade-enter-active {
-    transition-delay: .2s;
-  }
+
+.fade-enter-active {
+  transition-delay: .2s;
+}
+
 .fade-enter, .fade-leave-to {
   opacity: 0
 }

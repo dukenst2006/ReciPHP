@@ -8417,6 +8417,9 @@ table tfoot tr {
 .bottom-nav--shift .btn:not(.btn--active) .btn__content span {
   color: transparent;
 }
+html {
+  overflow-y: hidden;
+}
 #app #footer {
   position: absolute;
   bottom: 1px;
@@ -8440,6 +8443,21 @@ table tfoot tr {
 #app main {
   position: relative;
   height: calc(100vh - 64px - 56px);
+  overflow-y: scroll;
+}
+#app #new-recipe {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+#app .stepper-step {
+  width: calc(100% - 26px);
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+#app .stepper-button {
+  margin-top: 20px;
 }
 .fade-enter-active,
 .fade-leave-active {

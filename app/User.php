@@ -30,4 +30,16 @@ class User extends Authenticatable
     public function recipes() {
         return $this->hasMany("App\\Recipe");
     }
+
+    public function tags() {
+        return $this->hasMany("App\\RecipeTag");
+    }
+
+    public function ratings() {
+        return $this->hasMany("App\\RecipeRating");
+    }
+
+    public function favorites() {
+        return $this->hasMany("App\\Favorite");
+    }
 }
