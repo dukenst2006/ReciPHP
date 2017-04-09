@@ -7,7 +7,7 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
+const $ = window.$ = window.jQuery = require('jquery');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -15,7 +15,7 @@ window.$ = window.jQuery = require('jquery');
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = require('vue');
+const Vue = window.Vue = require('vue');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -24,6 +24,8 @@ window.Vue = require('vue');
  */
 
 window.axios = require('axios');
+
+window.axios.defaults.baseURL = "/api";
 
 window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
@@ -44,3 +46,8 @@ window.axios.defaults.headers.common = {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+export {
+    $,
+    Vue
+};

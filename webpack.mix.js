@@ -12,4 +12,5 @@ const { mix } = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .stylus('resources/assets/stylus/app.styl', 'public/css');
+   .stylus('resources/assets/stylus/app.styl', 'public/css')
+    .combine(["public/css/app.css", "node_modules/vue-animate/dist/vue-animate.min.css"], "public/css/app.css");

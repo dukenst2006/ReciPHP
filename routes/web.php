@@ -11,6 +11,34 @@
 |
 */
 
+Route::post("/api/login", "Auth\\LoginController@login");
+Route::post("/api/logout", "Auth\\LoginController@logout");
+
+Route::get("/api/user.json", function() {
+    $data = [];
+
+    if(Auth::check()) {
+        $user = Auth::user();
+        $data = [
+            "loggedIn" => true,
+            "name" => $user->name,
+            "email" => $user->email,
+        ];
+    } else {
+        $data = [
+            "loggedIn" => false,
+        ];
+    }
+
+    $data["token"] = csrf_token();
+
+    return response()->json($data);
+});
+
+Route::get("/", function() {
+    return redirect("/home");
+});
+
 Route::get('/{url}', function () {
     return view("main");
 })->where("url", '^(?!/api)\w+$');
