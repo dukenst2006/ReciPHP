@@ -13,7 +13,10 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Vuetify from "vuetify";
+
 Vue.component('example', require('./components/Example.vue'));
+Vue.use(Vuetify);
 
 const app = new Vue({
     el: '#app'
