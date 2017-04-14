@@ -3,9 +3,12 @@ import IngredientList from "./IngredientList";
 import Step from "./Step";
 
 const Recipe = class Recipe {
-    constructor(ingredientLists = [new IngredientList("", [])], steps = [new Step("", ""    )]) {
+    constructor(name = "", description = "", id = -1, ingredientLists = [new IngredientList("", [])], steps = [new Step("", "")]) {
+        this.name = name;
+        this.description = description;
         this.ingredientLists = ingredientLists;
         this.steps = steps;
+        this.id = id;
     }
 };
 

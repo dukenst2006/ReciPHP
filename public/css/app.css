@@ -8446,9 +8446,9 @@ html {
   overflow-y: scroll;
 }
 #app #new-recipe {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
 }
 #app .stepper-step {
   width: calc(100% - 26px);
@@ -8461,16 +8461,43 @@ html {
 }
 .fade-enter-active,
 .fade-leave-active {
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
 }
 .fade-enter-active {
-  -webkit-transition-delay: 0.2s;
-          transition-delay: 0.2s;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
 }
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.markdown h1 {
+  font-size: 3em;
+  line-height: 1em;
+}
+.markdown h2 {
+  font-size: 2.5em;
+  line-height: 1em;
+}
+.markdown h3 {
+  font-size: 2em;
+  line-height: 1em;
+}
+.markdown h4 {
+  font-size: 1.5em;
+  line-height: 1em;
+}
+.markdown h5 {
+  font-size: 1em;
+  line-height: 1em;
+}
+.markdown h6 {
+  font-size: 0.5em;
+  line-height: 1em;
+}
+.no-pointer-events {
+  pointer-events: none;
 }
 
 @charset "UTF-8";/*!

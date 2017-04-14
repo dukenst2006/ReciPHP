@@ -2,67 +2,82 @@
 
 @import "../../../node_modules/vuetify/src/stylus/main"
 
-html {
-  overflow-y: hidden;
-}
+html
+  overflow-y: hidden
 
-#app {
-  #footer {
-    position: absolute;
-    bottom: 1px;
-    width: 100%;
-  }
+#app
+  #footer
+    position: absolute
+    bottom: 1px
+    width: 100%
 
-  .content .inner {
-    padding: 1rem 3rem 0;
-    width: 100%;
-    height: 100%;
-  }
+  .content .inner
+    padding: 1rem 3rem 0
+    width: 100%
+    height: 100%
 
-  nav > .row {
-    width: 100%;
-  }
+  nav > .row
+    width: 100%
 
-  .inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+  .inner
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
 
-  main {
-    position: relative;
-    height: calc(100vh - 64px - 56px);
-    overflow-y: scroll;
-  }
+  main
+    position: relative
+    height: calc(100vh - 64px - 56px)
+    overflow-y: scroll
 
-  #new-recipe {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-  }
+  #new-recipe
+    position: fixed
+    bottom: 5rem
+    right: 2rem
 
-  .stepper-step {
-    width: calc(100% - 26px);
-    margin: auto;
-    margin-top: 15px;
-    margin-bottom: 5px;
-  }
+  .stepper-step
+    width: calc(100% - 26px)
+    margin: auto
+    margin-top: 15px
+    margin-bottom: 5px
 
-  .stepper-button {
-    margin-top: 20px;
-  }
-}
+  .stepper-button
+    margin-top: 20px
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s
-}
+.fade-enter-active, .fade-leave-active
+  transition: opacity .2s
 
-.fade-enter-active {
-  transition-delay: .2s;
-}
+.fade-enter-active
+  transition-delay: .1s
 
-.fade-enter, .fade-leave-to {
+.fade-enter, .fade-leave-to
   opacity: 0
-}
+
+.markdown
+  h1
+    font-size: 3em
+    line-height: 1em
+
+  h2
+    font-size: 2.5em
+    line-height: 1em
+
+  h3
+    font-size: 2em
+    line-height: 1em
+
+  h4
+    font-size: 1.5em
+    line-height: 1em
+
+  h5
+    font-size: 1em
+    line-height: 1em
+
+  h6
+    font-size: .5em
+    line-height: 1em
+
+.no-pointer-events
+  pointer-events: none;

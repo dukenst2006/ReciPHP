@@ -1,32 +1,39 @@
-import Vuex from "vuex";
+const Vuex = require("vuex");
+const createPersist = require("vuex-localstorage").default;
 
-import axios from "axios";
+const {Recipe, IngredientList, Step} = require("./Recipe/Recipe");
 
-const store = new Vuex.Store({
-    state: {
-        registerModalOpen: false,
-        userLoggedIn: false,
-        userEmail: "",
-        userName: "",
+let store;
+const debug = false;
+
+const state = {
+    registerModalOpen: false,
+    user: {
+        name: "",
+        email: "",
+        loggedIn: false,
     },
-    mutations: {
-        setRegisterModalOpen(state, open) {
-            state.registerModalOpen = open;
-        },
-        setUserData(state, data) {
-            state.userLoggedIn = data.loggedIn;
-            state.userEmail = data.email || "";
-            state.userName = data.name || "";
-        }
-    },
-    actions: {
-        getUserData(context) {
-            axios.get("/user.json").then((data) => {
-                context.commit("setUserData", data.data);
-                window.axios.defaults.headers.common["X-CSRF-TOKEN"] = data.data.token;
-            });
-        },
-    }
-});
+    recipe: new Recipe(),
+    ajax: false,
+    recipes: [],
+    lastUpdate: -1,
+};
 
-export default store;
+if (debug) {
+    store = new Vuex.Store({
+        state,
+        mutations: require("./Mutators/mutators"),
+        actions: require("./Actions/actions"),
+    });
+} else {
+    store = new Vuex.Store({
+        plugins: [createPersist({
+            namespace: "reciphp",
+            initialState: state,
+        })],
+        mutations: require("./Mutators/mutators"),
+        actions: require("./Actions/actions"),
+    });
+}
+
+module.exports = store;

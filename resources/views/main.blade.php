@@ -43,6 +43,6 @@
     <navigation></navigation>
     <register-modal></register-modal>
 </v-app>
-<script src="/js/app.js"></script>
+<script src="/js/app.js?{{ time() }}"></script>
 </body>
 </html>

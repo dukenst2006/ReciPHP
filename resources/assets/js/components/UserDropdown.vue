@@ -27,11 +27,7 @@
     export default {
         computed: {
             user() {
-                return {
-                    loggedIn: this.$store.state.userLoggedIn,
-                    email: this.$store.state.userEmail,
-                    name: this.$store.state.userName,
-                };
+                return this.$store.state.user;
             },
         },
         methods: {

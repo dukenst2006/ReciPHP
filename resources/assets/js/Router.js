@@ -1,4 +1,4 @@
-import VueRouter from "vue-router";
+const VueRouter = require("vue-router").default;
 
 const homeRoutes = [
     {
@@ -12,18 +12,26 @@ const homeRoutes = [
 
 const recipeRoutes = [
     {
-        path: "/recipes",
-        component: require("./components/Pages/Recipe/RecipesPage.vue"),
+        path: "/recipe",
+        component: require("./components/Pages/Recipe/index.vue"),
         meta: {
             title: "Rezepte - ReciPHP",
         },
     },
     {
-        path: "/recipes/new",
-        component: require("./components/Pages/Recipe/NewRecipePage.vue"),
+        path: "/recipe/new",
+        component: require("./components/Pages/Recipe/edit.vue"),
         meta: {
             title: "Neues Rezept - ReciPHP",
         },
+    },
+    {
+        path: "/recipe/:recipeId",
+        component: require("./components/Pages/Recipe/show.vue"),
+        meta: {
+            title: window.Store.state.recipe.name,
+        },
+        name: "recipe",
     }
 ];
 
@@ -53,4 +61,4 @@ router.beforeEach((to, from, next) => {
     next();
 });
 
-export default router;
+module.exports = router;

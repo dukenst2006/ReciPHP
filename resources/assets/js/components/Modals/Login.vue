@@ -42,7 +42,7 @@
         },
         methods: {
             setModalVisibility(visible) {
-                this.$store.commit("setRegisterModalOpen", visible);
+                this.$store.commit("registerModal/visible", visible);
             },
             submitForm() {
                 this.$Progress.start();

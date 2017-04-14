@@ -5,11 +5,11 @@
                 <span>Home</span>
                 <v-icon>home</v-icon>
             </v-btn>
-            <v-btn flat light class="teal--text" :router="true" to="/recipes">
+            <v-btn flat light class="teal--text" :router="true" to="/recipe">
                 <span>Rezepte</span>
                 <v-icon>book</v-icon>
             </v-btn>
-            <v-btn flat light class="teal--text" :router="true" to="/users">
+            <v-btn flat light class="teal--text" :router="true" to="/user">
                 <span>Users</span>
                 <v-icon>person</v-icon>
             </v-btn>

@@ -13,6 +13,7 @@
 
 Route::post("/api/login", "Auth\\LoginController@login");
 Route::post("/api/logout", "Auth\\LoginController@logout");
+Route::get("/api/recipe/lastChange", "RecipeController@newest");
 Route::resource("/api/recipe", "RecipeController");
 
 Route::get("/api/user.json", function() {

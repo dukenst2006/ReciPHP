@@ -17,8 +17,11 @@ import Vuex from "vuex";
 import VueRouter from "vue-router";
 import { sync } from "vuex-router-sync";
 
-import Store from "./Store";
-import Router from "./Router";
+const Store = require("./Store");
+window.Store = Store;
+
+const Router = require("./Router");
+window.Router = Router;
 
 Vue.use(VueRouter);
 
@@ -38,25 +41,24 @@ const app = new Vue({
     el: '#app',
     router: Router,
     store: Store,
+    mounted() {
+        this.$store.commit("ajax/deactivate");
+    },
     components: {
         "navigation": require("./components/Navigation.vue"),
-        "register-modal": require("./components/Modals/Register.vue"),
+        "register-modal": require("./components/Modals/Login.vue"),
         "user-dropdown": require("./components/UserDropdown.vue"),
     },
     methods: {
         setModalVisibility(visible) {
-            this.$store.commit("setRegisterModalOpen", visible);
+            this.$store.commit("registerModal/visible", visible);
         }
     },
     computed: {
         user() {
-            return {
-                loggedIn: this.$store.state.userLoggedIn,
-                email: this.$store.state.userEmail,
-                name: this.$store.state.userName,
-            };
-        },
-    }
+            return this.$store.state.user;
+        }
+    },
 });
 
 app.$store.dispatch("getUserData");
