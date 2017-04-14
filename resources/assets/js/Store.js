@@ -12,6 +12,8 @@ const state = {
         name: "",
         email: "",
         loggedIn: false,
+        isAdmin: false,
+        id: -1,
     },
     recipe: new Recipe(),
     ajax: false,

@@ -56,4 +56,14 @@ class Recipe extends Model
     public function user() {
         return $this->belongsTo("App\\User");
     }
+
+    public function getRatingAttribute() {
+        if(count($this->ratings) === 0) {
+            return -1;
+        }
+
+        return array_reduce($this->ratings, function($rating) {
+            return $rating->$rating;
+        }) / count($this->ratings);
+    }
 }

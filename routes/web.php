@@ -25,6 +25,8 @@ Route::get("/api/user.json", function() {
             "loggedIn" => true,
             "name" => $user->name,
             "email" => $user->email,
+            "isAdmin" => $user->admin,
+            "id" => $user->id,
         ];
     } else {
         $data = [

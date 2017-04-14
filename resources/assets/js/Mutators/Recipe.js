@@ -47,6 +47,20 @@ const all = {
     },
     "recipe/all/lastUpdate"(state, lastUpdate) {
         state.lastUpdate = lastUpdate.valueOf();
+    },
+    "recipe/all/remove"(state, id) {
+        let index = (() => {
+            for (let i = 0; i < state.recipes.length; i++) {
+                if(state.recipes[i].id === id) {
+                    return i;
+                }
+            }
+            return -1;
+        })();
+
+        if(index !== -1) {
+            state.recipes.splice(index, 1);
+        }
     }
 };
 
@@ -57,14 +71,14 @@ const various = {
     "recipe/description/set"(state, value) {
         state.recipe.description = value;
     },
-    "recipe/clearCurrent"(state) {
+    "recipe/current/clear"(state) {
         state.recipe = new Recipe();
     },
     "recipe/current/set"(state, id) {
         state.recipe = (() => {
-            for(let i = 0; i < state.recipes.length; i++) {
+            for (let i = 0; i < state.recipes.length; i++) {
                 const recipe = state.recipes[i];
-                if(recipe.id === id) {
+                if (recipe.id === id) {
                     return recipe;
                 }
             }

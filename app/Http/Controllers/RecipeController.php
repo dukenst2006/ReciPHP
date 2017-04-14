@@ -6,6 +6,7 @@ use App\Recipe;
 use App\RecipeIngredient;
 use App\RecipeIngredientList;
 use App\RecipeStep;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -17,7 +18,14 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::with([
+            "ingredientLists.ingredients",
+            "ratings",
+            "steps",
+            "favorites",
+            "tags",
+            "user",
+        ])->get();
         return response()->json($recipes);
     }
 
@@ -84,7 +92,15 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        //
+        $recipe = Recipe::with([
+            "ingredientLists.ingredients",
+            "ratings",
+            "steps",
+            "favorites",
+            "tags",
+            "user",
+        ])->find($recipe->id);
+        return response()->json($recipe);
     }
 
     /**
@@ -107,7 +123,13 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        //
+        \Log::info(json_encode($request));
+
+        \DB::transaction(function() use($request) {
+            $steps = $request->get("steps");
+        });
+
+        return response()->json();
     }
 
     /**
@@ -115,10 +137,17 @@ class RecipeController extends Controller
      *
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function destroy(Recipe $recipe)
     {
-        //
+        if(!\Auth::user()->admin && \Auth::user()->id !== $recipe->user->id) {
+            throw new AuthorizationException();
+        }
+
+        $recipe->delete();
+
+        return response()->json();
     }
 
     public function newest() {

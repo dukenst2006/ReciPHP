@@ -8432,6 +8432,17 @@ html {
 }
 #app nav > .row {
   width: 100%;
+  height: 100%;
+}
+#app nav > .row .toolbar__title {
+  height: 100%;
+}
+#app nav > .row .col {
+  height: 100%;
+}
+#app nav > .row .toolbar__title img {
+  max-height: 100%;
+  max-width: 100%;
 }
 #app .inner {
   position: absolute;
@@ -8498,6 +8509,11 @@ html {
 }
 .no-pointer-events {
   pointer-events: none;
+}
+@media screen and (max-width: 600px) {
+  nav {
+    height: 40px !important;
+  }
 }
 
 @charset "UTF-8";/*!

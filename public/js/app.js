@@ -42573,6 +42573,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42587,6 +42588,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 left: true,
                 sortable: false,
                 value: "description"
+            }, {
+                text: "Autor",
+                left: true,
+                value: "author"
             }, {
                 text: "Tags",
                 sortable: false,
@@ -42607,7 +42612,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$router.push("/recipe/new");
         },
         openRecipe: function openRecipe(id) {
-            this.$store.commit("recipe/current/set", id);
             this.$router.push({
                 name: "recipe",
                 params: {
@@ -42642,6 +42646,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
@@ -42650,7 +42667,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         recipe: function recipe() {
             return this.$store.state.recipe;
+        },
+        mayEditRecipe: function mayEditRecipe() {
+            return this.$store.state.user.isAdmin || this.$store.state.user.id === this.recipe.user.id;
+        },
+        valid: function valid() {
+            return typeof this.recipe !== "undefined";
         }
+    },
+    methods: {
+        editRecipe: function editRecipe() {
+            this.$store.commit("router", {});
+        },
+        deleteRecipe: function deleteRecipe() {
+            if (confirm("Soll dieses Rezept wirklich gelöscht werden?")) {
+                this.$store.dispatch("recipe/delete", this.$Progress);
+            }
+        }
+    },
+    mounted: function mounted() {
+        this.$store.dispatch("recipe/set", {
+            id: this.$store.state.route.params.recipeId,
+            $Progress: this.$Progress
+        });
     }
 });
 
@@ -42930,7 +42969,7 @@ var _ = __webpack_require__(33);
                     ingredients: ingredientList.ingredients.map(function (ingredient) {
                         return {
                             name: ingredient.name,
-                            amount: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util__["a" /* convertIngredientAmount */])(ingredient.amount, conversionFactor)
+                            amount: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util__["convertIngredientAmount"])(ingredient.amount, conversionFactor)
                         };
                     })
                 };
@@ -43028,6 +43067,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var axios = __webpack_require__(10);
 var moment = __webpack_require__(0);
 
+var _require = __webpack_require__(229),
+    snakeToCamel = _require.snakeToCamel,
+    deepFor = _require.deepFor;
+
 var actions = {
     "recipe/all/load": function recipeAllLoad(_ref, $Progress) {
         var commit = _ref.commit,
@@ -43038,6 +43081,17 @@ var actions = {
         var loadRecipes = function loadRecipes() {
             axios.get("/recipe").then(function (result) {
                 $Progress.finish();
+
+                deepFor(result.data, function (object, key) {
+                    var camel = snakeToCamel(key);
+                    if (key !== camel) {
+                        var property = object[key];
+                        delete object[key];
+                        object[camel] = property;
+                    }
+                    return object;
+                });
+
                 commit("recipe/all/loaded", result.data);
             }, function (error) {
                 $Progress.fail();
@@ -43091,6 +43145,56 @@ var actions = {
             if (result.status === 200) {
                 $Progress.finish();
             }
+        }, function (error) {
+            $Progress.fail();
+            throw error;
+        });
+    },
+    "recipe/delete": function recipeDelete(_ref4, $Progress) {
+        var commit = _ref4.commit,
+            state = _ref4.state;
+
+        $Progress.start();
+
+        var id = state.recipe.id;
+
+        axios.delete("/recipe/" + id).then(function (result) {
+            if (result.status === 200) {
+                $Progress.finish();
+                commit("recipe/current/clear");
+                commit("recipe/all/remove", id);
+                commit("router", "/recipe");
+            }
+        }, function (error) {
+            $Progress.fail();
+            throw error;
+        });
+    },
+    "recipe/set": function recipeSet(_ref5, _ref6) {
+        var commit = _ref5.commit,
+            state = _ref5.state;
+        var $Progress = _ref6.$Progress,
+            id = _ref6.id;
+
+        $Progress.start();
+        var recipe = function () {
+            for (var i = 0; i < state.recipes.length; i++) {
+                var _recipe = state.recipes[i];
+                if (_recipe.id === id) {
+                    return _recipe;
+                }
+            }
+        }();
+
+        if (typeof recipe !== "undefined") {
+            $Progress.finish();
+            commit("recipe/current/set", id);
+            return;
+        }
+
+        axios.get("/recipe/" + id).then(function (result) {
+            $Progress.finish();
+            state.recipe = result.data;
         }, function (error) {
             $Progress.fail();
             throw error;
@@ -43183,6 +43287,20 @@ var all = {
     },
     "recipe/all/lastUpdate": function recipeAllLastUpdate(state, lastUpdate) {
         state.lastUpdate = lastUpdate.valueOf();
+    },
+    "recipe/all/remove": function recipeAllRemove(state, id) {
+        var index = function () {
+            for (var i = 0; i < state.recipes.length; i++) {
+                if (state.recipes[i].id === id) {
+                    return i;
+                }
+            }
+            return -1;
+        }();
+
+        if (index !== -1) {
+            state.recipes.splice(index, 1);
+        }
     }
 };
 
@@ -43193,7 +43311,7 @@ var various = {
     "recipe/description/set": function recipeDescriptionSet(state, value) {
         state.recipe.description = value;
     },
-    "recipe/clearCurrent": function recipeClearCurrent(state) {
+    "recipe/current/clear": function recipeCurrentClear(state) {
         state.recipe = new Recipe();
     },
     "recipe/current/set": function recipeCurrentSet(state, id) {
@@ -43219,6 +43337,8 @@ module.exports = {
         state.user.loggedIn = data.loggedIn;
         state.user.email = data.email || "";
         state.user.name = data.name || "";
+        state.user.isAdmin = data.isAdmin === 1;
+        state.user.id = data.id || -1;
     },
     "ajax/activate": function ajaxActivate(state) {
         state.ajax = true;
@@ -43361,7 +43481,9 @@ var state = {
     user: {
         name: "",
         email: "",
-        loggedIn: false
+        loggedIn: false,
+        isAdmin: false,
+        id: -1
     },
     recipe: new Recipe(),
     ajax: false,
@@ -43451,8 +43573,13 @@ window.axios.defaults.headers.common = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export stringDifference */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return convertIngredientAmount; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringDifference", function() { return stringDifference; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertIngredientAmount", function() { return convertIngredientAmount; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "snakeToCamel", function() { return snakeToCamel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deepFor", function() { return deepFor; });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var stringDifference = function stringDifference(a, b) {
     var difference = "";
     if (a.length === b.length) {
@@ -43478,6 +43605,22 @@ var convertIngredientAmount = function convertIngredientAmount(string, factor) {
 
     var newAmount = amount * factor;
     return newAmount + unit;
+};
+
+var snakeToCamel = function snakeToCamel(s) {
+    return s.replace(/(\_\w)/g, function (m) {
+        return m[1].toUpperCase();
+    });
+};
+
+var deepFor = function deepFor(object, closure) {
+    for (var key in object) {
+        var property = object[key];
+        if ((typeof property === "undefined" ? "undefined" : _typeof(property)) === "object") {
+            deepFor(property, closure);
+        }
+        property = closure(object, key);
+    }
 };
 
 /***/ }),
@@ -46270,7 +46413,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n.recipe-show {\n    margin: 2em;\n}\n.recipe-show .card__title {\n    padding-bottom: 0;\n}\n.recipe-show .card__text {\n    padding-top: 0;\n}\n", ""]);
+exports.push([module.i, "\n.recipe-show {\n    margin: 2em;\n}\n.recipe-show .card__title {\n    padding-bottom: 0;\n}\n.recipe-show .card__text {\n    padding-top: 0;\n}\n.recipe-show .floating-buttons {\n    position: fixed;\n    right: 2em;\n    bottom: 5em;\n}\n", ""]);
 
 /***/ }),
 /* 275 */
@@ -78661,13 +78804,35 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('v-card', {
+  return (_vm.valid) ? _c('div', {
     staticClass: "recipe-show"
-  }, [_c('v-card-title', [_c('h3', [_vm._v(_vm._s(_vm.recipe.name))])]), _vm._v(" "), _c('v-card-text', [_c('recipe', {
+  }, [_c('v-card', [_c('v-card-title', [_c('h3', [_vm._v(_vm._s(_vm.recipe.name))])]), _vm._v(" "), _c('v-card-text', [_c('recipe', {
     attrs: {
       "recipe": _vm.recipe
     }
-  })], 1)], 1)
+  })], 1)], 1), _vm._v(" "), (_vm.mayEditRecipe) ? _c('div', {
+    staticClass: "floating-buttons"
+  }, [_c('v-btn', {
+    attrs: {
+      "floating": "floating",
+      "primary": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.editRecipe($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("edit")])], 1), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "floating": "floating",
+      "error": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.deleteRecipe($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("delete")])], 1)], 1) : _vm._e()], 1) : _c('div', [_c('h5', [_vm._v("Something went wrong!")])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -78749,6 +78914,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
             }
           }
         }, [_vm._v(_vm._s(props.item.description))]), _vm._v(" "), _c('td', {
+          on: {
+            "click": function($event) {
+              _vm.openRecipe(props.item.id)
+            }
+          }
+        }, [_vm._v(_vm._s(props.item.user.name))]), _vm._v(" "), _c('td', {
           on: {
             "click": function($event) {
               _vm.openRecipe(props.item.id)

@@ -167,7 +167,7 @@
             },
             ajax() {
                 return this.$store.state.ajax;
-            }
+            },
         }
     }
 </script>

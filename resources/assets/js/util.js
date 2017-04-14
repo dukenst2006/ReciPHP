@@ -24,3 +24,17 @@ export const convertIngredientAmount = (string, factor) => {
     let newAmount = amount * factor;
     return newAmount + unit;
 };
+
+export const snakeToCamel = (s) => {
+    return s.replace(/(\_\w)/g, function(m){return m[1].toUpperCase();});
+};
+
+export const deepFor = (object, closure) => {
+    for(let key in object) {
+        let property = object[key];
+        if(typeof property === "object") {
+            deepFor(property, closure);
+        }
+        property = closure(object, key);
+    }
+};

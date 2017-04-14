@@ -20,6 +20,7 @@
                 <template slot="items" scope="props">
                     <td @click="openRecipe(props.item.id)">{{ props.item.name }}</td>
                     <td @click="openRecipe(props.item.id)">{{ props.item.description }}</td>
+                    <td @click="openRecipe(props.item.id)">{{ props.item.user.name }}</td>
                     <td @click="openRecipe(props.item.id)"></td>
                     <td @click="openRecipe(props.item.id)"></td>
                     <td @click="openRecipe(props.item.id)"></td>
@@ -50,6 +51,11 @@
                         value: "description",
                     },
                     {
+                        text: "Autor",
+                        left: true,
+                        value: "author",
+                    },
+                    {
                         text: "Tags",
                         sortable: false,
                         value: "tags",
@@ -71,7 +77,6 @@
                 this.$router.push("/recipe/new");
             },
             openRecipe(id) {
-                this.$store.commit("recipe/current/set", id);
                 this.$router.push({
                     name: "recipe",
                     params: {
